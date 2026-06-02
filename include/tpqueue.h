@@ -6,15 +6,15 @@
 
 template<typename T>
 class TPQueue {
-private:
+ private:
     struct Node {
         T data;
         Node* next;
     };
-    
+
     Node* head;
 
-public:
+ public:
     TPQueue() : head(nullptr) {}
 
     ~TPQueue() {
@@ -33,7 +33,8 @@ public:
             head = newNode;
         } else {
             Node* current = head;
-            while (current->next != nullptr && current->next->data.prior >= item.prior) {
+            while (current->next != nullptr &&
+                   current->next->data.prior >= item.prior) {
                 current = current->next;
             }
             newNode->next = current->next;
@@ -45,12 +46,12 @@ public:
         if (head == nullptr) {
             throw std::runtime_error("Queue is empty!");
         }
-        
+
         Node* temp = head;
         T item = temp->data;
         head = head->next;
         delete temp;
-        
+
         return item;
     }
 };
